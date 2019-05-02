@@ -1,0 +1,7 @@
+input[type="checkbox"][readonly] {
+    pointer-events: none;
+}
+
+.align-item {
+    text-align: center;
+}

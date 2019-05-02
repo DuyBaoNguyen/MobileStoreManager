@@ -1,0 +1,148 @@
+/* Container item */
+
+.left-container {
+    padding: 10px;
+    float: left;
+    width: 50%;
+    border-right: 1px #c8c8c8 solid;
+}
+
+.right-container {
+    float: right;
+    width: 50%;
+    padding: 10px 10px 10px 0px;
+}
+
+.section-item {
+    padding: 10px;
+    
+    overflow: auto;
+}
+
+hr {
+    margin: 10px 0px;
+}
+
+@media screen and (max-width: 800px) {
+    .container-item {
+        width: 100%;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+}
+
+/* Order information */
+
+.sub-title {
+    margin-bottom: 5px;
+}
+
+.order-info {
+    color: red;
+}
+
+.order input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px #c8c8c8 solid;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.order label {
+    font-weight: normal;
+    margin-right: 20px;
+}
+
+.del-btn,.save-btn {
+    float: right;
+    margin-left: 5px;
+}
+
+/* Product */
+
+.img-container {
+    float: left;
+}
+
+.product-name {
+    color: #007aff;
+}
+
+.product-name:hover {
+    color: #007aff;
+}
+
+.product-cost {
+    color: red;
+}
+
+.product-option {
+    overflow: auto;
+}
+
+.product-option select {
+    width: 100px;
+    height: 28px;
+    border: 1px #c8c8c8 solid;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.dec {
+    float: left;
+    width: 28px;
+    height: 28px;
+    background: #007aff;
+    color: white;
+    border: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.inc {
+    float: left;
+    width: 28px;
+    height: 28px;
+    background: #007aff;
+    color: white;
+    border: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.product-amount {
+    float: left;
+    width: 50px !important;
+    height: 28px;
+    border: none !important;
+    border-top: 1px #c8c8c8 solid !important;
+    border-bottom: 1px #c8c8c8 solid !important;
+    text-align: center;
+    border-radius: 0 !important;
+}
+
+.amount-container {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.del-prod {
+    float: right;
+}
+
+.accept-btn {
+	float: left;
+}
+
+.save-btn {
+	margin: 0px 0px 0px 10px;
+}
+
+.section-item hr:last-child {
+	display: none;
+}
+
+.img-container {
+	margin-right: 20px;
+}

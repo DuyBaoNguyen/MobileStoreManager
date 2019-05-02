@@ -1,0 +1,63 @@
+.img-container {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+}
+
+.product-img {
+    width: 170px;
+    height: 142px;
+    margin: auto;
+    padding: 10px;
+    border: 1px #c8c8c8 solid;
+    border-radius: 4px;
+}
+
+.edit-img-btn, .del-img-btn {
+    font-size: 0.925em;
+    color: #007aff;
+    display: inline-block;
+    margin: 10px 2px;
+}
+
+label {
+    cursor: pointer;
+    font-weight: normal;
+}
+
+#upload-photo {
+    display: none;
+}
+
+.prod-info-sub-title {
+    margin: 8px 0px 2px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px #c8c8c8 solid;
+    border-radius: 4px;
+}
+
+.prod-info-title {
+    color: red;
+    margin: 8px 0px 0px;
+    font-size: 1.2em;
+}
+
+.func-item {
+    display: block;
+}
+
+hr {
+    margin: 10px 0px;
+}
+
+.save-btn {
+	margin-left: 10px;
+}
+
+.del-btn {
+	margin-top: 10px
+}

@@ -1,0 +1,48 @@
+.manuf-item-container {
+    float: left;
+    width: 12.5%;
+    padding: 5px;
+}
+
+.manuf-item {
+    display: block;
+    border: 1px #c8c8c8 solid;
+    border-radius: 4px;
+    overflow: auto;
+    background: white;
+    text-align: center;
+    text-decoration: none !important;
+    color: #444;
+    font-size: 1.5em;
+    padding: 40px 0px;
+}
+
+/* .manuf-name { */
+/*     color: #444; */
+/*     font-size: 1.5em; */
+/*     padding: 40px 0px 20px; */
+/* } */
+
+@media screen and (max-width: 1400px) {
+    .manuf-item-container {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .manuf-item-container {
+        width: 33.3%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .manuf-item-container {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .manuf-item-container {
+        width: 100%;
+    }
+}

@@ -1,0 +1,71 @@
+.comment {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.media {
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.active-comment {
+    background: #eee;
+}
+
+.media-body p {
+    margin-bottom: 0px;
+}
+
+hr {
+    margin: 10px 0px;
+}
+
+.answer-form {
+    overflow: auto;
+    display: none;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    height: 100px;
+    resize: none;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px #c8c8c8 solid;
+    border-radius: 4px;
+}
+
+.send-btn {
+    float: right;
+}
+
+.answer-btn, .del-btn {
+    background: transparent;
+    border: none;
+    padding: 0px;
+    color: #007aff;
+    font-size: 0.925em;
+    margin-right: 10px;
+}
+
+.answer-btn:hover, .del-btn:hover {
+    text-decoration: underline;
+}
+
+.ignore-btn {
+    color: #007aff !important;
+    font-size: 0.925em;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.ignore-btn:hover {
+    color: #007aff;
+}
+
+.del-btn {
+	float: none;
+}

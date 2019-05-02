@@ -1,0 +1,27 @@
+.order {
+    padding: 0px 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px #c8c8c8 solid;
+}
+
+table th,td {
+    border-bottom: 1px #c8c8c8 solid;
+}
+
+table th {
+    padding: 8px;
+    border: 1px #c8c8c8 solid;
+    background: #eee;
+}
+
+.datarow {
+    color: black !important;
+    text-decoration: none !important;
+    display: block;
+    width: 100%;
+    padding: 8px;
+}
