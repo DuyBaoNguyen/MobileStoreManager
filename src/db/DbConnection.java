@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnection {
-	static final String url = "jdbc:mysql://localhost:3306/mobile_store" + "?useUnicode=yes&characterEncoding=UTF-8";
+	static final String url = "jdbc:mysql://aaoczw5h6lbbou.cmuawpxdv6pg.us-east-2.rds.amazonaws.com:3306/mobile_store?useUnicode=yes&characterEncoding=UTF-8";
 	static final String user = "root";
-	static final String password = "123456";
+	static final String password = "123456ty";
 
 	static DbConnection instance;
 
