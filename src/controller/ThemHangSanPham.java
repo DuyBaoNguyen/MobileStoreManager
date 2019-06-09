@@ -34,7 +34,7 @@ public class ThemHangSanPham extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		Manufacturer manuf = new Manufacturer();
-		manuf.setName(request.getParameter("manufName"));
+		manuf.setName(StringEscapeUtils.escapeHtml(request.getParameter("manufName")));
 		
 		boolean insertManufError = ManufacturerDAO.insertManuf(manuf);
 		if (insertManufError == true) {

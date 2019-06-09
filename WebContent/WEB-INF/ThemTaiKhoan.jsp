@@ -146,7 +146,7 @@
 	    <script>
 	        $(document).ready(function () {
 	            setTimeout(function () {
-	                window.alert("Đã có lỗi xảy ra");
+	                window.alert('<c:out value="${message}"/>');
 	            }, 100);
 	        });
 	    </script>

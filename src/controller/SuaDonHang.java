@@ -51,9 +51,9 @@ public class SuaDonHang extends HttpServlet {
 			i++;
 		}
 
-		String personName = request.getParameter("personName");
-		String personPhone = request.getParameter("personPhone");
-		String personAddress = request.getParameter("personAddress");
+		String personName = StringEscapeUtils.escapeHtml(request.getParameter("personName"));
+		String personPhone = StringEscapeUtils.escapeHtml(request.getParameter("personPhone"));
+		String personAddress = StringEscapeUtils.escapeHtml(request.getParameter("personAddress"));
 
 		order.setPersonName(personName);
 		order.setPersonPhone(personPhone);

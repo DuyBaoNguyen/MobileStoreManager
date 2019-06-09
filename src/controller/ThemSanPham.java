@@ -43,9 +43,9 @@ public class ThemSanPham extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		Product product = new Product();
+		Product product = new Product(Integer.parseInt(request.getParameter("productId")));
 		
-		String productName = request.getParameter("productName");
+		String productName = StringEscapeUtils.escapeHtml(request.getParameter("productName"));
 		product.setName(productName);
 		
 		String productPrice = request.getParameter("productPrice");
@@ -61,7 +61,11 @@ public class ThemSanPham extends HttpServlet {
 			product.setImageBase64(null);
 		}
 		else {
-			product.setImageBase64(productImageBase64.replace("data:image/jpeg;base64,", ""));
+			if (productImageBase64.startsWith("data:image/jpeg")) {
+				product.setImageBase64(productImageBase64.replace("data:image/jpeg;base64,", ""));
+			} else if (productImageBase64.startsWith("data:image/png")) {
+				product.setImageBase64(productImageBase64.replace("data:image/png;base64,", ""));
+			}
 		}
 		
 		String productScreenSize = request.getParameter("productScreenSize");
@@ -72,7 +76,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setScreenSize(Float.parseFloat(productScreenSize));
 		}
 		
-		String productScreenTechnology = request.getParameter("productScreenTechnology");
+		String productScreenTechnology = StringEscapeUtils.escapeHtml(request.getParameter("productScreenTechnology"));
 		if (productScreenTechnology.length() == 0) {
 			product.setScreenTechnology(null);
 		}
@@ -80,7 +84,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setScreenTechnology(productScreenTechnology);
 		}
 		
-		String productOs = request.getParameter("productOs");
+		String productOs = StringEscapeUtils.escapeHtml(request.getParameter("productOs"));
 		if (productOs.length() == 0) {
 			product.setOs(null);
 		}
@@ -88,7 +92,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setOs(productOs);
 		}
 		
-		String productFrontCamera = request.getParameter("productFrontCamera");
+		String productFrontCamera = StringEscapeUtils.escapeHtml(request.getParameter("productFrontCamera"));
 		if (productFrontCamera.length() == 0) {
 			product.setFrontCamera(null);
 		}
@@ -96,7 +100,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setFrontCamera(productFrontCamera);
 		}
 		
-		String productPosteriorCamera = request.getParameter("productPosteriorCamera");
+		String productPosteriorCamera = StringEscapeUtils.escapeHtml(request.getParameter("productPosteriorCamera"));
 		if (productPosteriorCamera.length() == 0) {
 			product.setPosteriorCamera(null);
 		}
@@ -104,7 +108,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setPosteriorCamera(productPosteriorCamera);
 		}
 		
-		String productCpu = request.getParameter("productCpu");
+		String productCpu = StringEscapeUtils.escapeHtml(request.getParameter("productCpu"));
 		if (productCpu.length() == 0) {
 			product.setCpu(null);
 		}
@@ -112,7 +116,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setCpu(productCpu);
 		}
 		
-		String productRam = request.getParameter("productRam");
+		String productRam = StringEscapeUtils.escapeHtml(request.getParameter("productRam"));
 		if (productRam.length() == 0) {
 			product.setRam(null);
 		}
@@ -120,7 +124,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setRam(productRam);
 		}
 		
-		String productInternalMemory = request.getParameter("productInternalMemory");
+		String productInternalMemory = StringEscapeUtils.escapeHtml(request.getParameter("productInternalMemory"));
 		if (productInternalMemory.length() == 0) {
 			product.setInternalMemory(null);
 		}
@@ -128,7 +132,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setInternalMemory(productInternalMemory);
 		}
 		
-		String productMemoryStick = request.getParameter("productMemoryStick");
+		String productMemoryStick = StringEscapeUtils.escapeHtml(request.getParameter("productMemoryStick"));
 		if (productMemoryStick.length() == 0) {
 			product.setMemoryStick(null);
 		}
@@ -136,7 +140,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setMemoryStick(productMemoryStick);
 		}
 		
-		String productSim = request.getParameter("productSim");
+		String productSim = StringEscapeUtils.escapeHtml(request.getParameter("productSim"));
 		if (productSim.length() == 0) {
 			product.setSim(null);
 		}
@@ -144,7 +148,7 @@ public class ThemSanPham extends HttpServlet {
 			product.setSim(productSim);
 		}
 		
-		String productPin = request.getParameter("productPin");
+		String productPin = StringEscapeUtils.escapeHtml(request.getParameter("productPin"));
 		if (productPin.length() == 0) {
 			product.setPin(null);
 		}
@@ -156,7 +160,7 @@ public class ThemSanPham extends HttpServlet {
 		String[] colors = request.getParameter("productColors").split(",");
 		for (int i = 0; i < colors.length; i++) {
 			colors[i] = colors[i].trim();
-			productColors.add(colors[i]);
+			productColors.add(StringEscapeUtils.escapeHtml(colors[i]));
 		}
 		product.setColors(productColors);
 		

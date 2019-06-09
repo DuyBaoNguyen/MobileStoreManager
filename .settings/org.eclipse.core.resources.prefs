@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/controller/DoiMatKhau.java=UTF-8
+encoding//src/controller/ThemTaiKhoan.java=UTF-8
 encoding//src/model/Order.java=UTF-8
 encoding//src/model/OrderDetail.java=UTF-8
 encoding//src/model/Product.java=UTF-8

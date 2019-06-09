@@ -39,7 +39,7 @@ public class SuaHangSanPham extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Manufacturer manuf = new Manufacturer();
 		manuf.setId(Integer.parseInt(request.getParameter("manufId")));
-		manuf.setName(request.getParameter("manufName"));
+		manuf.setName(StringEscapeUtils.escapeHtml(request.getParameter("manufName")));
 		
 		boolean updateManufError = ManufacturerDAO.updateManuf(manuf);
 		if (updateManufError == true) {
