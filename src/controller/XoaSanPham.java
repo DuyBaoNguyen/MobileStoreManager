@@ -13,16 +13,22 @@ import model.Product;
 @WebServlet("/SanPhamDangKinhDoanh/XoaSanPham")
 public class XoaSanPham extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public XoaSanPham() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public XoaSanPham() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String manufId = request.getParameter("manufId");
-		Product product = new Product();
-		product.setId(Integer.parseInt(request.getParameter("productId")));
-		
+		Product product = null;
+		try {
+			product = new Product(Integer.parseInt(request.getParameter("productId")));
+		} catch (NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/SanPhamDangKinhDoanh");
+			return;
+		}
+
 		boolean deleteProductError = ProductDAO.deleteProduct(product);
 		getServletContext().setAttribute("deleteProductError", deleteProductError);
 		response.sendRedirect(request.getContextPath() + "/SanPhamDangKinhDoanh/HangSanPham?manufId=" + manufId);

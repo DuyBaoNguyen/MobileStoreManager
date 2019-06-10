@@ -22,21 +22,26 @@ public class TraLoiBinhLuan extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		try {
+			request.setCharacterEncoding("UTF-8");
 
-		Comment comment = new Comment();
-		comment.setContent(StringEscapeUtils.escapeHtml(request.getParameter("content")));
-		comment.setAnswerComment(new Comment(Integer.parseInt(request.getParameter("answerCommentId"))));
-		comment.setProduct(new Product(Integer.parseInt(request.getParameter("productId"))));
+			Comment comment = new Comment();
+			comment.setContent(StringEscapeUtils.escapeHtml(request.getParameter("content")));
+			comment.setAnswerComment(new Comment(Integer.parseInt(request.getParameter("answerCommentId"))));
+			comment.setProduct(new Product(Integer.parseInt(request.getParameter("productId"))));
 
-		Account account = (Account) request.getSession().getAttribute("account");
-		Account acc = new Account();
-		acc.setUsername(account.getUsername());
-		comment.setAnswerAccount(acc);
-		boolean replyCommentError = CommentDAO.insertComment(comment);
-		
-		getServletContext().setAttribute("replyCommentError", replyCommentError);
+			Account account = (Account) request.getSession().getAttribute("account");
+			Account acc = new Account();
+			acc.setUsername(account.getUsername());
+			comment.setAnswerAccount(acc);
+			boolean replyCommentError = CommentDAO.insertComment(comment);
 
-		response.sendRedirect(request.getContextPath() + "/ChiTietBinhLuan?commentId=" + request.getParameter("commentId"));
+			getServletContext().setAttribute("replyCommentError", replyCommentError);
+
+			response.sendRedirect(
+					request.getContextPath() + "/ChiTietBinhLuan?commentId=" + request.getParameter("commentId"));
+		} catch (Exception e) {
+			response.sendRedirect(request.getContextPath() + "/BinhLuanChuaTraLoi");
+		}
 	}
 }

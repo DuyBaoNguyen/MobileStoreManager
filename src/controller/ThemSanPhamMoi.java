@@ -20,11 +20,15 @@ public class ThemSanPhamMoi extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Product product = new Product(Integer.parseInt(request.getParameter("productId")));
+		try {
+			Product product = new Product(Integer.parseInt(request.getParameter("productId")));
 
-		boolean insertNewProductError = ProductDAO.insertNewProduct(product);
-		getServletContext().setAttribute("insertNewProductError", insertNewProductError);
+			boolean insertNewProductError = ProductDAO.insertNewProduct(product);
+			getServletContext().setAttribute("insertNewProductError", insertNewProductError);
+		} catch (Exception e) {
 
-		response.sendRedirect(request.getContextPath() + "/SanPhamMoi");
+		} finally {
+			response.sendRedirect(request.getContextPath() + "/SanPhamMoi");
+		}
 	}
 }

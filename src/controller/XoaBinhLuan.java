@@ -13,22 +13,28 @@ import model.Comment;
 @WebServlet("/XoaBinhLuan")
 public class XoaBinhLuan extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-    public XoaBinhLuan() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Comment comment = new Comment(Integer.parseInt(request.getParameter("commentId")));
-		
+	public XoaBinhLuan() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Comment comment = null;
+		try {
+			comment = new Comment(Integer.parseInt(request.getParameter("commentId")));
+		} catch (NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/BinhLuanChuaTraLoi");
+			return;
+		}
+
 		boolean deleteCommentError = CommentDAO.deleteComment(comment);
 		getServletContext().setAttribute("deleteCommentError", deleteCommentError);
 
 		String answerdComment = request.getParameter("answerdComment");
 		if (answerdComment != null) {
 			response.sendRedirect(request.getContextPath() + "/BinhLuanDaTraLoi");
-		}
-		else {
+		} else {
 			response.sendRedirect(request.getContextPath() + "/BinhLuanChuaTraLoi");
 		}
 	}

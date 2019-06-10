@@ -20,7 +20,13 @@ public class XoaSanPhamMoi extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Product product = new Product(Integer.parseInt(request.getParameter("productId")));
+		Product product = null;
+		try {
+			product = new Product(Integer.parseInt(request.getParameter("productId")));
+		} catch (NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/SanPhamMoi");
+			return;
+		}
 
 		boolean deleteNewProductError = ProductDAO.deleteNewProduct(product);
 		getServletContext().setAttribute("deleteNewProductError", deleteNewProductError);

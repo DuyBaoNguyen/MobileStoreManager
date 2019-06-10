@@ -23,8 +23,14 @@ public class SanPhamNgungKinhDoanhTheoHang extends HttpServlet {
 			throws ServletException, IOException {
 		String searchStr = request.getParameter("search");
 
-		Manufacturer manuf = new Manufacturer();
-		manuf.setId(Integer.parseInt(request.getParameter("manufId")));
+		Manufacturer manuf = null;
+		try {
+			manuf = new Manufacturer(Integer.parseInt(request.getParameter("manufId")));
+		} catch (NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/SanPhamNgungKinhDoanh");
+			return;
+		}
+		
 		ManufacturerDAO.getManuf(manuf, true, false);
 		manuf.setProducts(ProductDAO.searchProducts(manuf.getProducts(), searchStr));
 

@@ -7,6 +7,9 @@ public class StringEscapeUtils {
     
     static
     {
+    	htmlEncodeChars.put('\u002E', "&#46"); 
+        htmlEncodeChars.put('\\', "&#92"); 
+        htmlEncodeChars.put('\u002F', "&#47"); 
          
         // Special characters for HTML
         htmlEncodeChars.put('\u0026', "&amp;");

@@ -20,13 +20,18 @@ public class XacNhanDonHang extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Order order = new Order(Integer.parseInt(request.getParameter("orderId")));
+		try {
+			Order order = new Order(Integer.parseInt(request.getParameter("orderId")));
 
-		boolean acceptOrderError = OrderDAO.acceptOrder(order);
-		if (acceptOrderError == true) {
-			getServletContext().setAttribute("acceptOrderError", acceptOrderError);
-			response.sendRedirect(request.getContextPath() + "/ChiTietDonHangChuaThanhToan?orderId=" + order.getId());
-		} else {
+			boolean acceptOrderError = OrderDAO.acceptOrder(order);
+			if (acceptOrderError == true) {
+				getServletContext().setAttribute("acceptOrderError", acceptOrderError);
+				response.sendRedirect(
+						request.getContextPath() + "/ChiTietDonHangChuaThanhToan?orderId=" + order.getId());
+			} else {
+				response.sendRedirect(request.getContextPath() + "/DonHangChuaThanhToan");
+			}
+		} catch (Exception e) {
 			response.sendRedirect(request.getContextPath() + "/DonHangChuaThanhToan");
 		}
 	}

@@ -20,8 +20,15 @@ public class XoaSanPhamTrongDonHang extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Order order = new Order(Integer.parseInt(request.getParameter("orderId")));
-		Product product = new Product(Integer.parseInt(request.getParameter("productId")));
+		Product product = null;
+		Order order = null;
+		try {
+			order = new Order(Integer.parseInt(request.getParameter("orderId")));
+			product = new Product(Integer.parseInt(request.getParameter("productId")));
+		} catch (NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/DonHangChuaThanhToan");
+			return;
+		}
 		
 		boolean deleteProductError = OrderDAO.deleteProductInOrder(order, product);
 		getServletContext().setAttribute("deleteProductError", deleteProductError);

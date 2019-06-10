@@ -13,34 +13,40 @@ import model.Comment;
 @WebServlet("/ChiTietBinhLuan")
 public class ChiTietBinhLuan extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
-    public ChiTietBinhLuan() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Comment comment = new Comment(Integer.parseInt(request.getParameter("commentId")));
+	public ChiTietBinhLuan() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Comment comment = null;
+		try {
+			comment = new Comment(Integer.parseInt(request.getParameter("commentId")));
+		} catch (NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/BinhLuanChuaTraLoi");
+			return;
+		}
+
 		CommentDAO.getComment(comment);
 		request.setAttribute("comment", comment);
-		
-		Boolean ignoreCommentError = (Boolean)getServletContext().getAttribute("ignoreCommentError");
+
+		Boolean ignoreCommentError = (Boolean) getServletContext().getAttribute("ignoreCommentError");
 		if (ignoreCommentError != null) {
 			getServletContext().removeAttribute("ignoreCommentError");
-		}
-		else {
+		} else {
 			ignoreCommentError = false;
 		}
 		request.setAttribute("ignoreCommentError", ignoreCommentError);
-		
-		Boolean replyCommentError = (Boolean)getServletContext().getAttribute("replyCommentError");
+
+		Boolean replyCommentError = (Boolean) getServletContext().getAttribute("replyCommentError");
 		if (replyCommentError != null) {
 			getServletContext().removeAttribute("replyCommentError");
-		}
-		else {
+		} else {
 			replyCommentError = false;
 		}
 		request.setAttribute("replyCommentError", replyCommentError);
-		
+
 		request.getRequestDispatcher("/WEB-INF/ChiTietBinhLuan.jsp").forward(request, response);
 	}
 }

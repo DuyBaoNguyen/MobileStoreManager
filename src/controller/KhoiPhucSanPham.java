@@ -20,8 +20,13 @@ public class KhoiPhucSanPham extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String manufId = request.getParameter("manufId");
-		Product product = new Product();
-		product.setId(Integer.parseInt(request.getParameter("productId")));
+		Product product = null;
+		try {
+			product = new Product(Integer.parseInt(request.getParameter("productId")));
+		} catch(NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/SanPhamNgungKinhDoanh/HangSanPham?manufId=" + manufId);
+			return;
+		}
 		
 		boolean restoreProductError = ProductDAO.restoreProduct(product);
 		getServletContext().setAttribute("restoreProductError", restoreProductError);

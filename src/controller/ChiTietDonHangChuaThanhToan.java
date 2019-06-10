@@ -19,7 +19,14 @@ public class ChiTietDonHangChuaThanhToan extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Order order = new Order(Integer.parseInt(request.getParameter("orderId")));
+		Order order = null;
+		try {
+			order = new Order(Integer.parseInt(request.getParameter("orderId")));
+		} catch(NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/DonHangChuaThanhToan");
+			return;
+		}
+		
 		OrderDAO.getOrder(order);
 		
 		if (order.getOrderDetails().size() == 0) {

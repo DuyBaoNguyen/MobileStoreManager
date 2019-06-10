@@ -13,17 +13,22 @@ import model.Product;
 @WebServlet("/SanPhamHot/ThemSanPhamHot")
 public class ThemSanPhamHot extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-    public ThemSanPhamHot() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Product product = new Product(Integer.parseInt(request.getParameter("productId")));
-		
-		boolean insertHotProductError = ProductDAO.insertHotProduct(product);
-		getServletContext().setAttribute("insertHotProductError", insertHotProductError);
-		
-		response.sendRedirect(request.getContextPath() + "/SanPhamHot");
+	public ThemSanPhamHot() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			Product product = new Product(Integer.parseInt(request.getParameter("productId")));
+
+			boolean insertHotProductError = ProductDAO.insertHotProduct(product);
+			getServletContext().setAttribute("insertHotProductError", insertHotProductError);
+		} catch (Exception e) {
+			
+		} finally {
+			response.sendRedirect(request.getContextPath() + "/SanPhamHot");
+		}
 	}
 }
